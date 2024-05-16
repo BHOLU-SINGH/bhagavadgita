@@ -46,7 +46,7 @@ export default function Page(props) {
         setError(err.message);
         setIsLoading(false);
       });
-  }, []);
+  }, [chapter_no, verse_no]);
 
   if (isLoading)
     return (

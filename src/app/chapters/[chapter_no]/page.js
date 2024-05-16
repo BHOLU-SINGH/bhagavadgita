@@ -9,7 +9,7 @@ import FetchSloks from "@/app/Components/FetchSloks";
 //   HiOutlineChevronDoubleLeft,
 //   HiOutlineChevronDoubleRight,
 // } from "react-icons/hi";
-import Link from "next/link";
+// import Link from "next/link";
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
 
@@ -35,7 +35,7 @@ export default function Page(props) {
         setError(error.message);
         setIsLoading(false);
       });
-  }, []);
+  }, [chapter_no]);
 
   if (isLoading)
     return (

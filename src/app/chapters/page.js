@@ -7,7 +7,7 @@ import ChapterCard from "@/app/Components/ChapterCard";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 
-export default function page() {
+export default function Page() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);

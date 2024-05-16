@@ -1,15 +1,35 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+.chapters,
+.chapters .chapter-item,
+.main,
+.spinner,
+nav,
+nav ul {
+  display: flex;
+}
+.chapter,
+.chapters {
+  margin: 1.2rem auto;
+}
+.main,
+.not-found,
+.verse-explain {
+  min-height: 100vh;
+}
+.about-us h2,
+.verse-explain .div p,
+.verse-explain div h2 {
+  margin-bottom: 1rem;
+}
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-} 
-nav{
-  display: flex;
+  font-family: Poppins, sans-serif;
+}
+nav {
   height: 80px;
   width: 100%;
-  /* background: #1b1b1b; */
   background: #dd761cde;
   align-items: center;
   justify-content: space-between;
@@ -17,20 +37,19 @@ nav{
   flex-wrap: wrap;
   z-index: 99999;
 }
-nav .logo{
+nav .logo {
   color: #fff;
   font-size: 35px;
   font-weight: 600;
 }
-nav ul{
-  display: flex;
+nav ul {
   flex-wrap: wrap;
   list-style: none;
 }
-nav ul li{
+nav ul li {
   margin: 0 5px;
 }
-nav ul li a{
+nav ul li a {
   color: #f2f2f2;
   text-decoration: none;
   font-size: 18px;
@@ -38,72 +57,72 @@ nav ul li a{
   padding: 8px 15px;
   border-radius: 5px;
   letter-spacing: 1px;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 nav ul li a.active,
-nav ul li a:hover{
+nav ul li a:hover {
   color: #111;
   background: #fff;
 }
-nav .menu-btn i{
+nav .menu-btn .icon,
+nav .menu-btn i {
   color: #fff;
   font-size: 22px;
   cursor: pointer;
   display: none;
 }
-input[type="checkbox"]{
+input[type="checkbox"] {
   display: none;
 }
-@media (max-width: 1000px){
-  nav{
+@media (max-width: 1000px) {
+  nav {
     padding: 0 40px 0 50px;
   }
 }
 @media (max-width: 920px) {
-  nav .menu-btn i{
+  nav .menu-btn .icon,
+  nav .menu-btn i,
+  nav ul,
+  nav ul li a {
     display: block;
   }
-  #click:checked ~ .menu-btn i:before{
+  #click:checked ~ .menu-btn i:before {
     content: "\f00d";
   }
-  nav ul{
+  nav ul {
     position: fixed;
     top: 80px;
     left: -100%;
-    /* background: #111; */
-    background:#fff;
+    background: #fff;
     height: 100vh;
     width: 100%;
     text-align: center;
-    display: block;
-    transition: all 0.3s ease;
+    transition: 0.3s;
   }
-  #click:checked ~ ul{
+  #click:checked ~ ul {
     left: 0;
   }
-  nav ul li{
+  nav ul li {
     width: 100%;
     margin: 40px 0;
   }
-  nav ul li a{
+  nav ul li a {
     width: 100%;
     margin-left: -100%;
-    display: block;
     font-size: 20px;
     color: #333;
     transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-  #click:checked ~ ul li a{
-    margin-left: 0px;
+  #click:checked ~ ul li a {
+    margin-left: 0;
   }
   nav ul li a.active,
-  nav ul li a:hover{
-    background: none;
-    /* color: cyan; */
+  nav ul li a:hover {
+    background: 0 0;
     color: #dd761c;
   }
 }
-.content{
+.content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -114,32 +133,28 @@ input[type="checkbox"]{
   padding: 0 30px;
   color: #1b1b1b;
 }
-.content div{
+.main,
+footer {
+  position: relative;
+}
+.content div {
   font-size: 40px;
   font-weight: 700;
 }
-
 .main {
-  position: relative;
-  display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  min-height: 100vh;
   flex-direction: column;
 }
-
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   width: 10px;
 }
-body::-webkit-scrollbar-thumb{
+body::-webkit-scrollbar-thumb {
   background-color: #555;
   border-radius: 10px;
 }
-body::-webkit-scrollbar-track{
+body::-webkit-scrollbar-track {
   background-color: #ccc;
 }
 .spinner {
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -150,11 +165,11 @@ body::-webkit-scrollbar-track{
   border-radius: 50%;
   width: 48px;
   height: 48px;
-  color: blue;
+  color: #00f;
   z-index: 1000;
 }
-.spinner .loader:before,
-.spinner .loader:after {
+.spinner .loader:after,
+.spinner .loader:before {
   content: "";
   display: block;
   position: absolute;
@@ -164,42 +179,39 @@ body::-webkit-scrollbar-track{
   height: inherit;
   border-radius: 50%;
   transform: rotateX(70deg);
-  animation: 1s spin linear infinite;
+  animation: 1s linear infinite spin;
 }
 .spinner .loader:after {
   color: #ff3d00;
   transform: rotateY(70deg);
   animation-delay: 0.4s;
 }
-
 @keyframes rotate {
   0% {
-    transform: translate(-50%, -50%) rotateZ(0deg);
+    transform: translate(-50%, -50%) rotateZ(0);
   }
   100% {
     transform: translate(-50%, -50%) rotateZ(360deg);
   }
 }
-
 @keyframes rotateccw {
   0% {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0);
   }
   100% {
     transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
-
 @keyframes spin {
   0%,
   100% {
-    box-shadow: 0.2em 0px 0 0px currentcolor;
+    box-shadow: 0.2em 0 0 0 currentcolor;
   }
   12% {
     box-shadow: 0.2em 0.2em 0 0 currentcolor;
   }
   25% {
-    box-shadow: 0 0.2em 0 0px currentcolor;
+    box-shadow: 0 0.2em 0 0 currentcolor;
   }
   37% {
     box-shadow: -0.2em 0.2em 0 0 currentcolor;
@@ -211,33 +223,24 @@ body::-webkit-scrollbar-track{
     box-shadow: -0.2em -0.2em 0 0 currentcolor;
   }
   75% {
-    box-shadow: 0px -0.2em 0 0 currentcolor;
+    box-shadow: 0 -0.2em 0 0 currentcolor;
   }
   87% {
     box-shadow: 0.2em -0.2em 0 0 currentcolor;
   }
 }
-
-/* h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  margin-top: 10px;
-} */
 .chapters {
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 30px;
-  margin: 1.2rem auto;
 }
-.chapters a {
+.chapters a,
+.sloks-container a {
   text-decoration: none;
   color: #333;
 }
 .chapters .chapter-item {
-  display: flex;
   flex-direction: column;
   border-radius: 5px;
   cursor: pointer;
@@ -246,10 +249,9 @@ body::-webkit-scrollbar-track{
   height: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   border: 1px solid transparent;
-  border-radius: 5px;
   padding: 1rem 1.5rem 1.6rem;
   margin: 0 5px;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 .chapters .chapter-item:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -260,26 +262,26 @@ body::-webkit-scrollbar-track{
   font-size: 1rem;
   font-weight: 500;
   margin-top: 0.5rem;
-  background: transparent;
+  background: 0 0;
 }
 .chapters .chapter-item p span {
   font-weight: 700;
-  background: transparent;
+  background: 0 0;
 }
-.chapters .chapter-item p.chapter-number,
-.chapter .chapter-number {
+.chapter .chapter-number,
+.chapters .chapter-item p.chapter-number {
   font-size: 1.2rem;
   color: #dd761c;
 }
-.chapters .chapter-item p.chapter-title,
-.chapter .chapter-title {
+.chapter .chapter-title,
+.chapters .chapter-item p.chapter-title {
   font-size: 1.1rem;
   font-weight: 700;
   margin-top: 0.5rem;
   color: #333;
 }
-.chapters .chapter-item p.chapter-summary,
-.chapter .chapter-summary {
+.chapter .chapter-summary,
+.chapters .chapter-item p.chapter-summary {
   font-size: 1rem;
   margin-top: 0.5rem;
   color: #777;
@@ -293,25 +295,20 @@ body::-webkit-scrollbar-track{
   gap: 5px;
   text-align: center;
 }
-
 .truncate-4 {
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Number of lines you want to display */
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-
 .chapter {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 60%;
-  margin: 1.2rem auto;
 }
-
 .chapter .chapter-number {
   font-size: 1.3rem;
   font-weight: 400;
@@ -330,13 +327,12 @@ body::-webkit-scrollbar-track{
   color: #222;
   line-height: 1.8rem;
 }
-
 .chapter-container {
   position: relative;
   width: 100%;
   height: 100%;
 }
-.chapter-container .icons{
+.chapter-container .icons {
   position: fixed;
   top: 50%;
   width: 100%;
@@ -344,40 +340,41 @@ body::-webkit-scrollbar-track{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: transparent;
+  background: 0 0;
 }
 .chapter-container .icons button {
   display: block;
   border: none;
-  outline: none;
+  outline: 0;
   width: 30px;
   height: 30px;
-  background: transparent;
+  background: 0 0;
   padding: 5px 0;
   border-radius: 15px;
   cursor: pointer;
   color: #333;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 .chapter-container .icons .icon {
   width: 100%;
   height: 100%;
-  background: transparent;
+  background: 0 0;
 }
+.btn_div .btn:hover,
 .chapter-container .icons button:hover {
   background: #fff2e1;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
-
 .sloks-container .chapter-verses {
   width: 60%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 1rem auto 1.5rem;
-  background: transparent;
+  background: 0 0;
 }
-.chapter-verses div {
+.chapter-verses div,
+.not-found div {
   display: flex;
   align-items: center;
 }
@@ -385,10 +382,8 @@ body::-webkit-scrollbar-track{
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px;
   font-size: 1rem;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
 }
 .chapter-verses button {
   display: flex;
@@ -396,40 +391,29 @@ body::-webkit-scrollbar-track{
   align-items: center;
   gap: 6px;
   width: 120px;
-  padding: 0.5rem 0rem;
-  border: none;
+  padding: 0.5rem 0;
   border: 1px solid #ddd;
   color: #333;
-  border-radius: 5px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-radius: 0 5px 5px 0;
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
-
 .chapter-verses button img {
   mix-blend-mode: multiply;
 }
-
 .not-found {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
 }
-.not-found div {
-  display: flex;
-  align-items: center;
-}
-
 .not-found div img {
   width: 40px;
   height: 35px;
 }
-
-.not-found div h1, .not-found div h2 {
+.not-found div h1,
+.not-found div h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -445,9 +429,6 @@ body::-webkit-scrollbar-track{
   color: #333;
   font-weight: 700;
 }
-
-
-
 .btn_div {
   display: flex;
   justify-content: space-between;
@@ -462,30 +443,24 @@ body::-webkit-scrollbar-track{
   gap: 0.3rem;
   padding: 0.5rem 1rem;
   border: none;
-  outline: none;
+  outline: 0;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
-.btn_div .btn .btn-icon {
-  background: transparent;
-}
-.btn_div .btn:hover {
-  background: #fff2e1;
-  transition: 0.3s ease;
-}
-
-.sloks-container {
+.sloks-container,
+.verse-explain {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
   gap: 5px;
 }
-.sloks-container a {
-  text-decoration: none;
-  color: #333;
+.btn_div .btn .btn-icon {
+  background: 0 0;
+}
+.sloks-container {
+  align-items: center;
+  flex-direction: column;
 }
 .sloks-container .slok-card {
   max-width: 900px;
@@ -493,41 +468,45 @@ body::-webkit-scrollbar-track{
   display: flex;
   align-items: baseline;
   padding: 15px 12px;
-  background: transparent;
-  transition: 0.3s ease;
+  background: 0 0;
+  transition: 0.3s;
 }
 .sloks-container .slok-card:hover {
   background: #fff2e19a;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
-.sloks-container .slok-card:hover div p{
+.sloks-container .slok-card:hover div p {
   color: #111;
 }
 .sloks-container .slok-card h4 {
   min-width: 100px;
   color: #dd761c;
-  background: transparent;
+  background: 0 0;
 }
 .sloks-container .slok-card div {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  background: transparent;
+  background: 0 0;
 }
 .sloks-container .slok-card div p {
-  background: transparent;
+  background: 0 0;
   font-size: 1.1rem;
 }
-
-
 .verse-explain {
-  display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
-  gap: 5px;
+}
+.about-us,
+.contact-us {
+  min-height: calc(100vh - 80px);
+}
+.about-us,
+.contact-us,
+.verse-explain .div-1 {
+  gap: 1rem;
+  display: flex;
 }
 .verse-explain div {
   width: 55%;
@@ -538,50 +517,37 @@ body::-webkit-scrollbar-track{
   text-align: center;
   font-size: 2rem;
   margin-top: 1rem;
-  margin-bottom: 1rem;
   font-weight: 700;
 }
-.verse-explain div :not(h2, p.slok){
+.verse-explain div :not(h2, p.slok) {
   font-size: 1.1rem;
   color: #333;
 }
 .verse-explain .div-1 {
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
 }
-.verse-explain .div-1 p{
+.verse-explain .div-1 p {
   text-align: center;
 }
 .verse-explain .div-1 p.slok {
   text-align: center;
   font-size: 2rem;
-  color: #F97300;
+  color: #f97300;
   max-width: 600px;
   line-height: 45px;
 }
-.verse-explain .div p {
-  margin-bottom: 1rem;
-}
-
-
-/* Contact Us page */
 .contact-us {
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
-  min-height: calc(100vh - 80px);
 }
 .contact-us form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* gap: 1.5rem; */
   width: 450px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 30px 25px;
@@ -592,7 +558,7 @@ body::-webkit-scrollbar-track{
   color: #333;
 }
 .contact-us form small {
-  font-size: 0.90rem;
+  font-size: 0.9rem;
   color: #777;
   text-align: center;
   margin-bottom: 1.5rem;
@@ -608,24 +574,25 @@ body::-webkit-scrollbar-track{
   font-size: 1rem;
   color: #333;
 }
-.contact-us form .form-group input, .contact-us form .form-group textarea {
+.contact-us form .form-group input,
+.contact-us form .form-group textarea {
   width: 100%;
   padding: 0.5rem;
-  border: none;
-  outline: none;
   border: 1px solid #ddd;
+  outline: 0;
   border-radius: 5px;
   font-size: 1rem;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 .contact-us form .form-group textarea {
   resize: none;
   width: 100%;
   height: 120px;
 }
-.contact-us form .form-group input:focus, .contact-us form .form-group textarea:focus {
+.contact-us form .form-group input:focus,
+.contact-us form .form-group textarea:focus {
   border: 1px solid #333;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 .contact-us form .form-group button {
   display: flex;
@@ -633,42 +600,30 @@ body::-webkit-scrollbar-track{
   align-items: center;
   padding: 0.5rem 1rem;
   border: none;
-  outline: none;
+  outline: 0;
   border-radius: 5px;
   font-size: 1rem;
   cursor: disabled;
-  transition: 0.3s ease;
+  transition: 0.3s;
   background: #dd761c81;
   color: #fff;
 }
-/* .contact-us form .form-group button:disabled {
-  background: #ddd;
-  color: #333;
-} */
 .contact-us form .form-group button:hover {
   background: #dd761c;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
-
-
-/* About-us page */
 .about-us {
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
-  min-height: calc(100vh - 80px);
   padding: 1.5rem 0;
 }
 .about-us h2 {
   font-size: 2rem;
   font-weight: 700;
   color: #333;
-  margin-bottom: 1rem;
   text-align: center;
-  /* margin-top: 1.5rem; */
 }
 .about-us p {
   font-size: 1.1rem;
@@ -677,11 +632,7 @@ body::-webkit-scrollbar-track{
   text-align: center;
   width: 60%;
 }
-
-
-
 footer {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -693,23 +644,27 @@ footer .main-content {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  /* align-items: center; */
   gap: 20px;
+}
+footer .main-content .center,
+footer .main-content .left,
+footer .main-content .right form {
+  flex-direction: column;
+  gap: 15px;
+  display: flex;
 }
 footer .main-content .box {
   width: 350px;
 }
 footer .main-content .left {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
   width: 33.33%;
 }
 footer .main-content .box h2 {
   font-size: 1.5rem;
   color: #fff;
 }
-footer .main-content .left p {
+footer .main-content .left p,
+footer .main-content .right form div span {
   color: #fff;
 }
 footer .main-content .left .social {
@@ -718,7 +673,7 @@ footer .main-content .left .social {
 }
 footer .main-content .left .social a {
   text-decoration: none;
-  color:#dd761c;
+  color: #dd761c;
 }
 footer .main-content .left .social .icon {
   width: 30px;
@@ -727,21 +682,17 @@ footer .main-content .left .social .icon {
   cursor: pointer;
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2  );
-  transition: 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
 }
+footer .main-content .center .box-details div .icon:hover,
 footer .main-content .left .social .icon:hover {
   background: #fff;
   color: #dd761c;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 footer .main-content .left .social :not(.icon:last-child) {
   margin-right: 10px;
-}
-footer .main-content .center {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
 footer .main-content .center .box-details {
   display: flex;
@@ -761,12 +712,7 @@ footer .main-content .center .box-details div .icon {
   padding: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
-  transition: 0.3s ease;
-}
-footer .main-content .center .box-details div .icon:hover {
-  background: #fff;
-  color: #dd761c;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 footer .main-content .center .box-details div a {
   text-decoration: none;
@@ -778,37 +724,31 @@ footer .main-content .right {
   flex-direction: column;
   gap: 10px;
 }
-footer .main-content .right form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 footer .main-content .right form div {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-footer .main-content .right form div span {
-  color: #fff;
-}
-footer .main-content .right form div input, footer .main-content .right form div textarea {
+footer .main-content .right form div input,
+footer .main-content .right form div textarea {
   width: 100%;
   padding: 0.5rem;
   border: none;
-  outline: none;
+  outline: 0;
   border-radius: 5px;
   color: #fff;
   font-size: 1rem;
-  transition: 0.3s ease;
-  background: transparent;
+  transition: 0.3s;
+  background: 0 0;
   border: 1px solid #ffffff57;
 }
 footer .main-content .right form div textarea {
   resize: none;
 }
-footer .main-content .right form div input:focus, footer .main-content .right form div textarea:focus {
+footer .main-content .right form div input:focus,
+footer .main-content .right form div textarea:focus {
   border: 1px solid #fff;
-  transition: 0.3s ease
+  transition: 0.3s;
 }
 footer .main-content .right form div button {
   display: flex;
@@ -816,18 +756,18 @@ footer .main-content .right form div button {
   align-items: center;
   padding: 0.5rem;
   border: none;
-  outline: none;
+  outline: 0;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
   background: #ffffff57;
   color: #dd761c;
-  transition: 0.3s ease;
+  transition: 0.3s;
   user-select: none;
 }
 footer .main-content .right form div button:hover {
   background: #fff;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 footer .bottom {
   display: flex;
@@ -846,17 +786,13 @@ footer .bottom .icon {
   margin-left: 10px;
   margin-right: 5px;
 }
-
-
 @media (max-width: 1024px) {
+  .about-us p,
   .chapter {
     width: 95%;
   }
   .sloks-container .chapter-verses {
     width: 98%;
-  }
-  .about-us p {
-    width: 95%;
   }
   footer .main-content {
     justify-content: center;
@@ -865,7 +801,6 @@ footer .bottom .icon {
     width: 400px;
   }
 }
-
 @media (max-width: 600px) {
   .navList {
     flex-direction: column;
@@ -884,7 +819,7 @@ footer .bottom .icon {
   .not-found p {
     text-align: center;
   }
-  .sloks-container .chapter-verses{
+  .sloks-container .chapter-verses {
     width: 96%;
   }
   .sloks-container .slok-card {
@@ -898,15 +833,13 @@ footer .bottom .icon {
   .sloks-container .slok-card div p {
     font-size: 1.2rem;
   }
-  .verse-explain div {
+  .verse-explain div,
+  footer .main-content .box {
     width: 100%;
   }
   .contact-us form {
     width: 100%;
     height: 100vh;
     box-shadow: none;
-  }
-  footer .main-content .box {
-    width: 100%;
   }
 }

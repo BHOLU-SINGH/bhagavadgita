@@ -37,7 +37,7 @@ export default function FetchSloks(props) {
     };
 
     fetchSloks();
-  }, []);
+  }, [chapter_no, verses_count]);
 
   if (isLoading)
     return (
@@ -80,7 +80,7 @@ export default function FetchSloks(props) {
       </div>
       {sloks &&
         sloks.map((slok) => (
-          <Link href={`/chapters/${chapter_no}/verse/${JSON.stringify(slok.result.data.verse)}`}>
+          <Link href={`/chapters/${chapter_no}/verse/${JSON.stringify(slok.result.data.verse)}`} key={slok.result.data._id}>
             <div key={slok.result.data._id} className="slok-card">
               <h4>Verse: {JSON.stringify(slok.result.data.verse)}</h4>
               <div>

@@ -27,7 +27,7 @@ export default function Page(props) {
         setError(error.message);
         setIsLoading(false);
       });
-  }, []);
+  }, [chapter_no]);
 
   if (isLoading)
     return (
