@@ -19,7 +19,7 @@ export default function FetchSloks(props) {
       for (let number = 1; number <= verses_count; number++) {
         try {
           const response = await fetch(
-            `http://localhost:3000/api/slok/${chapter_no}/${number}`
+            `https://bhagavadgita1.vercel.app/api/slok/${chapter_no}/${number}`
           );
           if (!response.ok) {
             throw new Error(`API call failed with status ${response.status}`);

@@ -14,7 +14,7 @@ export default function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/chapters/") // Replace with your actual API URL
+    fetch("https://bhagavadgita1.vercel.app/api/chapters/") // Replace with your actual API URL
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
