@@ -13,7 +13,7 @@ export default function Page() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://bhagavadgita1.vercel.app/api/chapters/") // Replace with your actual API URL
+    fetch("/api/chapters/") // Replace with your actual API URL
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

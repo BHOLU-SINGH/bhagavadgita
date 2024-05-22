@@ -21,7 +21,7 @@ export default function Page(props) {
 
   useEffect(() => {
     const fetchFirstAPI = fetch(
-      `https://bhagavadgita1.vercel.app/api/chapters/${chapter_no}/verse/${verse_no}`
+      `/api/chapters/${chapter_no}/verse/${verse_no}`
     )
       .then((response) => {
         if (!response.ok) throw new Error("Failed to fetch data from API 1");
@@ -31,7 +31,7 @@ export default function Page(props) {
       .catch((err) => setError(err.message));
 
     const fetchSecondAPI = fetch(
-      `https://bhagavadgita1.vercel.app/api/chapters/${chapter_no}`
+      `/api/chapters/${chapter_no}`
     )
       .then((response) => {
         if (!response.ok) throw new Error("Failed to fetch data from API 2");

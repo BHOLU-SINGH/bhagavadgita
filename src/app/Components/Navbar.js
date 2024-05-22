@@ -1,9 +1,21 @@
+'use client'
+
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 
 const Navbar = (props) => {
+  const [chapterNo, setChapterNo] = useState("");
+  const [verseNo, setVerseNo] = useState("");
   const tabNumber = props.tabNumber;
+
+  const searchData = () => {
+    if(chapterNo && verseNo){
+      // router.push(`/chapters/${chapterNo}/verse/${verseNo}`);
+      console.log("Chapter no: ", chapterNo, "Verse no: ", verseNo);
+    }
+  }
+
   return (
     <nav>
       <div class="logo">BhagavadGita</div>

@@ -6,15 +6,13 @@ import React, { useEffect, useState } from "react";
 import ChapterCard from "@/app/Components/ChapterCard";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-// import Navbar from "./Components/Navbar";
-
 export default function Home() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://bhagavadgita1.vercel.app/api/chapters/") // Replace with your actual API URL
+    fetch("/api/chapters/")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

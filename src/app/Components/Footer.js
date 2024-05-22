@@ -8,8 +8,10 @@ import {
 } from "react-icons/fa";
 import { CiLocationOn, CiMail } from "react-icons/ci";
 import { IoCallOutline } from "react-icons/io5";
+import GetCurrYear from "./GetCurrYear";
 
 export default function Footer() {
+  const currentYear = GetCurrYear();
   return (
     <footer>
       <div className="main-content">
@@ -63,7 +65,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="right box">
-          <h2>Contact us</h2>
+          {/* <h2>Contact us</h2>
           <form action="#">
             <div class="email">
               <span className="text">Email *</span>
@@ -76,16 +78,22 @@ export default function Footer() {
             <div className="btn">
               <button type="submit">Send</button>
             </div>
-          </form>
+          </form> */}
+          <h2>Links</h2>
+          <Link href="/">Home</Link>
+          <Link href="/chapters/1/verse">Verses</Link>
+          <Link href="/search">Search</Link>
+          <Link href="/about-us">About-Us</Link>
+          <Link href="/contact-us">Contact-Us</Link>
         </div>
       </div>
       <div className="bottom">
         <span className="credit">
-          Created By
+          Created By-
           <Link href="https://freeprojects1.blogspot.com">FreeProjects1</Link>|
         </span>
         <FaRegCopyright className="icon" />
-        <span> 2024 All rights reserved.</span>
+        <span> {currentYear} All rights reserved.</span>
       </div>
     </footer>
   );
