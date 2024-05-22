@@ -14,6 +14,8 @@ let transporter = nodemailer.createTransport({
   },
 });
 
+console.log("Environment variables are: "+process.env.EMAIL_USER + process.env.EMAIL_PASS);
+
 export async function POST(req) {
   const payload = await req.json();
   const name = payload.name;
