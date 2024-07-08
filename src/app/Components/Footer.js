@@ -16,11 +16,9 @@ export default function Footer() {
     <footer>
       <div className="main-content">
         <div className="left box">
-          <h2>About Us</h2>
+          <h2>Bhagavad Gita</h2>
           <p>
-            FreeProjects1 is a free blog where you can get web designing, web
-            development, ui/ux designing, html css projects, hover animation and
-            effects, javascript and jquery projects and related so on.
+            Explore the profound wisdom of the Bhagavad Gita, a pivotal Hindu scripture from the epic Mahabharata, through our interactive platform. Our website offers an in-depth exploration of all 18 chapters and every verse, providing you with comprehensive resources to understand and apply the Gita’s timeless teachings on life, duty, and enlightenment.
           </p>
           <div className="social">
             <Link href="https://facebook.com/freeprojects1/">
