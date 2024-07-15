@@ -30,22 +30,22 @@ export default function ChapterItem(props) {
         <span>Chapter {data.chapter_number}</span>
       </p>
       <p className="chapter-title">
-        {data.meaning.en} : {data.meaning.hi}
+        {data.name_meaning} : {data.name}
       </p>
-      <p className="chapter-summary">{data.summary.en}</p>
-      <p className="chapter-summary">{data.summary.hi}</p>
+      <p className="chapter-summary">{data.chapter_summary}</p>
+      <p className="chapter-summary">{data.chapter_summary_hindi}</p>
       <div className="btn_div">
         <button
-          className="btn"
+          className="btn btn-circle"
           onClick={() => handlePreviousClick(data.chapter_number)}
         >
-          <HiOutlineChevronDoubleLeft className="btn-icon" /> Previous
+          <HiOutlineChevronDoubleLeft className="btn-icon" />
         </button>
         <button
-          className="btn"
+          className="btn btn-circle"
           onClick={() => handleNextClick(data.chapter_number)}
         >
-          Next <HiOutlineChevronDoubleRight className="btn-icon" />
+          <HiOutlineChevronDoubleRight className="btn-icon" />
         </button>
       </div>
     </div>

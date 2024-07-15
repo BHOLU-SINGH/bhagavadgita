@@ -1,4 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.w-h-full {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  background-image: url("/image3.jpg");
+}
+.bg-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .chapters,
 .chapters .chapter-item,
 .main,
@@ -21,6 +42,13 @@ nav ul {
 .about-us h2,
 .verse-explain .div p,
 .verse-explain div h2 {
+  margin-bottom: 1rem;
+}
+.border {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
 }
 * {
@@ -58,7 +86,7 @@ nav ul {
 nav ul li {
   margin: 0 5px;
 }
-nav ul li a {
+nav ul li a:not(.userLink) {
   color: #f2f2f2;
   text-decoration: none;
   font-size: 18px;
@@ -69,9 +97,10 @@ nav ul li a {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  user-select: none;
 }
-nav ul li a.active,
-nav ul li a:hover {
+nav ul li a.active:not(.userLink),
+nav ul li a:hover:not(.userLink) {
   color: #111;
   background: #fff;
 }
@@ -81,6 +110,11 @@ nav .menu-btn i {
   font-size: 22px;
   cursor: pointer;
   display: none;
+}
+nav ul .icon {
+  font-size: 25px;
+  color: #fff;
+  cursor: pointer;
 }
 input[type="checkbox"] {
   display: none;
@@ -135,6 +169,9 @@ input[type="checkbox"] {
   nav ul li a:hover {
     background: 0 0;
     color: #dd761c;
+  }
+  nav ul .icon {
+    color: #333;
   }
 }
 .content {
@@ -378,10 +415,19 @@ body::-webkit-scrollbar-track {
   font-weight: 700;
   background: 0 0;
 }
+
+.chapter-container.btn-rounded .chapter {
+  width: 100%;
+}
+
+.chapter p {
+  width: 80%;
+}
 .chapter .chapter-number,
 .chapters .chapter-item p.chapter-number {
-  font-size: 1.2rem;
+  font-size: 18px;
   color: #dd761c;
+  text-align: center;
 }
 .chapter .chapter-title,
 .chapters .chapter-item p.chapter-title {
@@ -434,6 +480,7 @@ body::-webkit-scrollbar-track {
   -ms-flex-direction: column;
   flex-direction: column;
   width: 60%;
+  line-height: 4rem;
 }
 .chapter .chapter-number {
   font-size: 1.3rem;
@@ -441,22 +488,29 @@ body::-webkit-scrollbar-track {
   text-transform: uppercase;
 }
 .chapter .chapter-title {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 36px;
+  font-weight: 800;
   margin-top: 0.5rem;
   color: #222;
   text-align: center;
 }
 .chapter .chapter-summary {
-  font-size: 1.2rem;
+  font-size: 18px;
   margin-top: 0.5rem;
   color: #222;
-  line-height: 1.8rem;
+  line-height: 36px;
 }
 .chapter-container {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.chapter-container.btn-rounded {
+  width: 100%;
 }
 .chapter-container .icons {
   position: fixed;
@@ -494,12 +548,15 @@ body::-webkit-scrollbar-track {
   height: 100%;
   background: 0 0;
 }
-.btn_div .btn:hover,
+.btn_div .btn:hover, .btn_div .btn-circle:hover, 
 .chapter-container .icons button:hover {
   background: #fff2e1;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+}
+.btn_div .btn-circle:hover {
+  border: 1px solid #dd761c;
 }
 .sloks-container .chapter-verses {
   width: 60%;
@@ -606,7 +663,7 @@ body::-webkit-scrollbar-track {
   gap: 1.2rem;
   width: 100%;
 }
-.btn_div .btn {
+.btn_div .btn, .btn_div .btn-circle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -624,6 +681,26 @@ body::-webkit-scrollbar-track {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
+.btn-rounded .btn_div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* -webkit-transform: translate(-50%, -50%); */
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 1000;
+}
+
+.btn_div .btn-circle {
+  padding: 0.8rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  margin: 0 1rem;
+  background: transparent;
+}
 .sloks-container,
 .verse-explain {
   display: -webkit-box;
@@ -638,23 +715,21 @@ body::-webkit-scrollbar-track {
   background: 0 0;
 }
 .sloks-container {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
+  display: flex;
   align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
+  flex-wrap: wrap;
+  line-height: 24px;
+}
+.sloks-container .slokItemContainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .sloks-container .slok-card {
   max-width: 900px;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
   padding: 15px 12px;
   background: 0 0;
   -webkit-transition: 0.3s;
@@ -674,6 +749,7 @@ body::-webkit-scrollbar-track {
   min-width: 100px;
   color: #dd761c;
   background: 0 0;
+  font-size: 1.1rem;
 }
 .sloks-container .slok-card div {
   width: 100%;
@@ -684,16 +760,20 @@ body::-webkit-scrollbar-track {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 5px;
   background: 0 0;
 }
 .sloks-container .slok-card div p {
   background: 0 0;
   font-size: 1.1rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 .verse-explain {
   -webkit-box-align: center;
-  -ms-flex-align: center;
+  -ms-flex-align: center; 
   align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -720,12 +800,12 @@ body::-webkit-scrollbar-track {
 }
 .verse-explain div h2 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 36px;
   margin-top: 1rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 .verse-explain div :not(h2, p.slok) {
-  font-size: 1.1rem;
+  font-size: 18px;
   color: #333;
 }
 .verse-explain .div-1 {
@@ -745,7 +825,7 @@ body::-webkit-scrollbar-track {
 }
 .verse-explain .div-1 p.slok {
   text-align: center;
-  font-size: 2rem;
+  font-size: 30px;
   color: #f97300;
   max-width: 600px;
   line-height: 45px;
@@ -1029,6 +1109,148 @@ body::-webkit-scrollbar-track {
   transition: 0.3s ease;
 }
 
+.account {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  background-image: url("/image7.jpg");
+  animation: rotate360 2s linear infinite;
+}
+@keyframes imageRoatate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* .register-div {
+  background-image: url('/image7.jpg');
+} */
+.account form {
+  width: 450px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
+  border-radius: 5px;
+  background: #fff;
+  transition: 0.3s ease;
+}
+.account form:hover h2 {
+  color: #333;
+}
+.account form h2 {
+  text-align: center;
+}
+.account form .tagline {
+  font-size: 0.85rem;
+  color: #555;
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.account form .msg {
+  color: #555;
+  font-size: 0.95rem;
+  text-align: center;
+}
+.account form .msg.error {
+  color: #f44336;
+}
+.account form .msg.success {
+  color: #4caf50;
+}
+.account form .form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.account form .form-group .form-control:nth-child(1),
+.account form .form-group .form-control:nth-child(2) {
+  width: 50%;
+}
+.account form .form-control {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.account form .form-control label {
+  color: #333;
+}
+.account form .form-control input,
+.account form .form-control select {
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: 0.3s ease;
+  margin-top: 0.3rem;
+  color: #000;
+  background: transparent;
+}
+.account form .form-control input:focus {
+  border: 1px solid rgba(0, 0, 0, 1);
+  transition: 0.3s ease;
+}
+.account form .form-control div {
+  position: relative;
+  display: flex;
+}
+.account form .form-control div input {
+  width: 100%;
+}
+.account form .form-control div .icon {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.account form .pass-error {
+  color: #f44336;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.account form .btn-div {
+  width: 100%;
+  margin-top: 2rem;
+}
+.account form .btn-div button {
+  border: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  padding: 0.6rem 2.5rem;
+  font-size: 1rem;
+  background: #dd761c;
+  color: #fff;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+.account form .btn-div button:hover {
+  background-color: #cf6508;
+}
+.account form .link {
+  text-align: center;
+  margin-top: 1rem;
+  color: #333;
+}
+.account form .link a {
+  color: #333;
+}
+
 footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1049,6 +1271,7 @@ footer .main-content {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  align-items: flex-start;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   gap: 20px;
@@ -1312,20 +1535,10 @@ footer .bottom .icon {
     width: 96%;
   }
   .sloks-container .slok-card {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 10px;
-  }
-  .sloks-container .slok-card h4 {
-    font-size: 1.3rem;
-  }
-  .sloks-container .slok-card div p {
-    font-size: 1.2rem;
   }
   .verse-explain div,
   footer .main-content .box {
@@ -1336,5 +1549,23 @@ footer .bottom .icon {
     height: 100vh;
     -webkit-box-shadow: none;
     box-shadow: none;
+  }
+  .account form {
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .account form {
+    width: auto;
+  }
+  .account form .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .account form .form-group .form-control:nth-child(1),
+  .account form .form-group .form-control:nth-child(2) {
+    width: 100%;
   }
 }

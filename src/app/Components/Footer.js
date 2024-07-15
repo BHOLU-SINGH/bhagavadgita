@@ -16,10 +16,17 @@ export default function Footer() {
     <footer>
       <div className="main-content">
         <div className="left box">
-          <h2>Bhagavad Gita</h2>
+          {/* <h2>About Us</h2> */}
+          {/* <p>
+            FreeProjects1 is a free blog where you can get web designing, web
+            development, ui/ux designing, html css projects, hover animation and
+            effects, javascript and jquery projects and related so on.
+          </p> */}
+          <h2 translate="no">Bhagavad Gita</h2>
           <p>
-            Explore the profound wisdom of the Bhagavad Gita, a pivotal Hindu scripture from the epic Mahabharata, through our interactive platform. Our website offers an in-depth exploration of all 18 chapters and every verse, providing you with comprehensive resources to understand and apply the Gita’s timeless teachings on life, duty, and enlightenment.
+          Explore the profound wisdom of the Bhagavad Gita, a pivotal Hindu scripture from the epic Mahabharata, through our interactive platform. Our website offers an in-depth exploration of all 18 chapters and every verse, providing you with comprehensive resources to understand and apply the Gita’s timeless teachings on life, duty, and enlightenment.
           </p>
+          {/* <p>Immerse yourself in the spiritual journey and join a community of fellow seekers</p> */}
           <div className="social">
             <Link href="https://facebook.com/freeprojects1/">
               <FaFacebookF className="icon" />
@@ -45,7 +52,7 @@ export default function Footer() {
                 href="https://www.google.com/maps/place/Sanganer,+Jaipur,+Rajasthan/@26.8105588,75.7328596,13z/data=!3m1!4b1!4m6!3m5!1s0x396dca6cc31968b1:0x30a5a0acd5c3017b!8m2!3d26.8191641!4d75.7659513!16s%2Fm%2F043qvtr?entry=ttu"
                 target="_blank"
               >
-                Sangener, Jaipur, Rajasthan 302029
+                Sangener, Jaipur, Rajasthan - 302029
               </Link>
             </div>
             <div className="phone">
@@ -88,7 +95,7 @@ export default function Footer() {
       <div className="bottom">
         <span className="credit">
           Created By-
-          <Link href="https://freeprojects1.blogspot.com">FreeProjects1</Link>|
+          <Link href="https://freeprojects1.blogspot.com" target="_blank">FreeProjects1</Link>|
         </span>
         <FaRegCopyright className="icon" />
         <span> {currentYear} All rights reserved.</span>

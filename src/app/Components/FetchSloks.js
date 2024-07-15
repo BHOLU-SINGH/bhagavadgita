@@ -14,30 +14,17 @@ export default function FetchSloks(props) {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchSloks = async () => {
-      const fetchedSloks = [];
-      for (let number = 1; number <= verses_count; number++) {
-        try {
-          const response = await fetch(
-            `https://bhagavadgita1.vercel.app/api/slok/${chapter_no}/${number}`
-          );
-          if (!response.ok) {
-            throw new Error(`API call failed with status ${response.status}`);
-          }
-          const data = await response.json();
-          fetchedSloks.push(data);
-        } catch (err) {
-          setError(err.message);
-          setIsLoading(false);
-          return;
-        }
-      }
-      setSloks(fetchedSloks);
+    const getAllVerses = async () => {
+      setIsLoading(true);
+      const response = await fetch(`/api/slok/${chapter_no}/`);
+      const data = await response.json();
+      // return data;
+      setSloks(data.data);
       setIsLoading(false);
     };
-
-    fetchSloks();
-  }, [chapter_no, verses_count]);
+    
+    getAllVerses();
+  }, [setIsLoading, chapter_no, setSloks]);
 
   if (isLoading)
     return (
@@ -49,7 +36,7 @@ export default function FetchSloks(props) {
 
   const reverseData = () => {
     setSloks([...sloks].reverse());
-  }
+  };
 
   function searchData(event) {
     event.preventDefault();
@@ -64,7 +51,11 @@ export default function FetchSloks(props) {
         <h4>{verses_count} Verses</h4>
         <div>
           <form onSubmit={(event) => searchData(event)}>
-          <input type="number" placeholder="Go To Verse" onKeyUp={(e) => setSearch(e.target.value)} />
+            <input
+              type="number"
+              placeholder="Go To Verse"
+              onKeyUp={(e) => setSearch(e.target.value)}
+            />
           </form>
           <button type="button" onClick={() => reverseData()}>
             Sort
@@ -78,18 +69,25 @@ export default function FetchSloks(props) {
           </button>
         </div>
       </div>
-      {sloks &&
-        sloks.map((slok) => (
-          <Link href={`/chapters/${chapter_no}/verse/${JSON.stringify(slok.result.data.verse)}`} key={slok.result.data._id}>
-            <div key={slok.result.data._id} className="slok-card">
-              <h4>Verse: {JSON.stringify(slok.result.data.verse)}</h4>
-              <div>
-                <p>{JSON.stringify(slok.result.data.siva.et)}</p>
-                <p>{JSON.stringify(slok.result.data.tej.ht)}</p>
+      <div className="slokItemContainer">
+        {sloks &&
+          sloks.map((slok) => (
+            <Link
+              href={`/chapters/${chapter_no}/verse/${slok.verse_number}`}
+              key={slok.id}
+            >
+              <div className="slok-card">
+                <h4>Verse: {slok.verse_number}</h4>
+                <div>
+                  <p>{slok.text}</p>
+                  <p>{slok.translations[5].description}</p>
+                  {/* <p>{JSON.stringify(slok.result.data.siva.et)}</p> */}
+                  {/* <p>{JSON.stringify(slok.result.data.tej.ht)}</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+      </div>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import {
 } from "react-icons/hi2";
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
+import Border from "@/app/Components/Border";
 
 export default function Page(props) {
   const chapter_no = props.params.chapter_no;
@@ -20,33 +21,29 @@ export default function Page(props) {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchFirstAPI = fetch(
-      `/api/chapters/${chapter_no}/verse/${verse_no}`
-    )
-      .then((response) => {
-        if (!response.ok) throw new Error("Failed to fetch data from API 1");
-        return response.json();
-      })
-      .then((data) => setData(data.result.data))
-      .catch((err) => setError(err.message));
-
-    const fetchSecondAPI = fetch(
-      `/api/chapters/${chapter_no}`
-    )
-      .then((response) => {
-        if (!response.ok) throw new Error("Failed to fetch data from API 2");
-        return response.json();
-      })
-      .then((data) => setChapterData(data.result.data))
-      .catch((err) => setError(err.message));
-
-    Promise.all([fetchFirstAPI, fetchSecondAPI])
-      .then(() => setIsLoading(false))
-      .catch((err) => {
-        setError(err.message);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const [chapterResponse, verseResponse] = await Promise.all([
+          fetch(`/api/chapters/${chapter_no}/`),
+          fetch(`/api/chapters/${chapter_no}/verse/${verse_no}`)
+        ]);
+    
+        const [chapterData, verseData] = await Promise.all([
+          chapterResponse.json(),
+          verseResponse.json()
+        ]);
+    
+        setChapterData(chapterData.data);
+        setData(verseData.data);
         setIsLoading(false);
-      });
-  }, [chapter_no, verse_no]);
+      } catch (error) {
+        setError(error);
+      }
+    };
+  
+    fetchData();
+  }, [setIsLoading, chapter_no, verse_no, setChapterData, setData, setError]);
 
   if (isLoading)
     return (
@@ -73,38 +70,58 @@ export default function Page(props) {
     }
   };
 
+  const translation_en_and_hi = (translationItem) => {
+    if (translationItem.author_name === "Swami Sivananda") {
+      return <p>{translationItem.description}</p>;
+    }
+    if (translationItem.author_name === "Swami Tejomayananda") {
+      return <p>{translationItem.description}</p>;
+    }
+  };
+
   return (
     <div className="main">
       <Navbar tabNumber={2} />
-      <div className="verse-explain">
+      <div className="verse-explain btn-rounded">
         <div className="div div-1">
-          <h2>{data._id}</h2>
-          <p className="slok">{data.slok}</p>
+          <h2>BG {chapter_no}.{verse_no}</h2>
+          <p className="slok">{data.text}</p>
           <p>{data.transliteration}</p>
+          <p>{data.word_meanings}</p>
         </div>
+        <Border />
         <div className="div div-2">
           <h2>Translation</h2>
-          <p>{data.siva.et}</p>
-          <p>{data.tej.ht}</p>
+          {data.translations
+            .sort((a, b) => a.id - b.id)
+            .map((translationItem) => translation_en_and_hi(translationItem))}
         </div>
+        <Border />
         <div className="div div-3">
           <h2>Commentary</h2>
-          <p>{data.siva.ec}</p>
+          {/* <p>{data.siva.ec}</p> */}
+          {data.commentaries
+            .sort((a, b) => a.id - b.id)
+            .map((commentariesItem) =>
+              commentariesItem.author_name === "Swami Sivananda" ? (
+                <p key={commentariesItem.id}>{commentariesItem.description}</p>
+              ) : null
+            )}
         </div>
         <div className="btn_div">
           <button
-            className="btn"
+            className="btn btn-circle"
             onClick={() =>
               handlePreviousClick(verse_no, chapterData.verses_count)
             }
           >
-            <HiOutlineChevronDoubleLeft className="btn-icon" /> Previous
+            <HiOutlineChevronDoubleLeft className="btn-icon" />
           </button>
           <button
-            className="btn"
+            className="btn btn-circle"
             onClick={() => handleNextClick(verse_no, chapterData.verses_count)}
           >
-            Next <HiOutlineChevronDoubleRight className="btn-icon" />
+            <HiOutlineChevronDoubleRight className="btn-icon" />
           </button>
         </div>
       </div>

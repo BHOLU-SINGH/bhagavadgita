@@ -8,9 +8,9 @@ export default function ChapterCard(props) {
         <span>Chapter {data.chapter_number}</span>
       </p>
       <p className="chapter-title">
-        {data.meaning.en} : {data.meaning.hi}
+        {data.name_meaning} : {data.name}
       </p>
-      <p className="chapter-summary truncate-4">{data.summary.en}</p>
+      <p className="chapter-summary truncate-4">{data.chapter_summary}</p>
       <p className="chapter-verse">
         <Image
           src="/list-icon1.png"

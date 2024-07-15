@@ -12,6 +12,7 @@ import FetchSloks from "@/app/Components/FetchSloks";
 // import Link from "next/link";
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
+import Border from "@/app/Components/Border";
 
 export default function Page(props) {
   const chapter_no = props.params.chapter_no;
@@ -20,22 +21,19 @@ export default function Page(props) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`/api/chapters/${chapter_no}`) // Replace with your actual API URL
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setData(data.result.data);
+    const getSingleChapter = async () => {
+      try {
+        const response = await fetch(`/api/chapters/${chapter_no}`);
+        const data = await response.json();
+        setData(data.data);
         setIsLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setIsLoading(false);
-      });
-  }, [chapter_no]);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    getSingleChapter();
+  }, [chapter_no, setData, setIsLoading, setError]);
 
   if (isLoading)
     return (
@@ -65,7 +63,7 @@ export default function Page(props) {
       <main className="main">
         <Navbar tabNumber={1} />
         {data && (
-          <div className="chapter-container">
+          <div className="chapter-container btn-rounded">
             {/* <div className="icons">
             <button onClick={() => handlePreviousClick(chapter_no)}>
               <HiOutlineChevronDoubleLeft className="icon" />
@@ -75,6 +73,7 @@ export default function Page(props) {
             </button>
           </div> */}
             <ChapterItem data={data} />
+            <Border />
             <FetchSloks
               chapter_no={chapter_no}
               verses_count={data.verses_count}

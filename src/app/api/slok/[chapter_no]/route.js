@@ -1,14 +1,24 @@
 import { NextResponse } from "next/server";
 
 export async function GET(res, req) {
+  const apiKey = process.env.API_KEY;
+  const apiHost = process.env.API_HOST;
   const chapter_no = req.params.chapter_no;
+
   try {
-    const response = await fetch(
-      `https://bhagavadgitaapi.in/slok/${chapter_no}/1`
-    );
-    const data = await response.json();
+    const url =
+      `https://${apiHost}/v2/chapters/${chapter_no}/verses/`;
+    const options = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": `${apiKey}`,
+        "x-rapidapi-host": `${apiHost}`,
+      },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
     return NextResponse.json({
-      result: { data },
+      data: result,
       success: true,
     });
   } catch (err) {

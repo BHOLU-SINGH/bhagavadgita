@@ -1,39 +1,36 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ChapterCard from "@/app/Components/ChapterCard";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 
-export default function Page() {
+export default function Home() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const getChapters = async () => {
+    try {
+      const response = await fetch("/api/chapters");
+      const data = await response.json();
+      setData(data.data);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   useEffect(() => {
-    fetch("/api/chapters/") // Replace with your actual API URL
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setData(data.result.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setIsLoading(false);
-      });
+    getChapters();
   }, []);
 
   if (isLoading)
     return (
       <div className="spinner">
-        <span class="loader"></span>
+        <span className="loader"></span>
       </div>
     );
   if (error) return <p>Error: {error}</p>;
@@ -51,8 +48,8 @@ export default function Page() {
               <ChapterCard item={item} />
             </Link>
           ))}
+        <Footer />
       </div>
-      <Footer />
     </main>
   );
 }
