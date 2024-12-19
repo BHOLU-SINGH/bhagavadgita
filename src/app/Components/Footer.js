@@ -92,7 +92,7 @@ export default function Footer() {
           </form> */}
           <h2>Links</h2>
           <Link href="/">Home</Link>
-          <Link href="/chapters/1/verse">Verses</Link>
+          <Link href="/chapters/1/verse/1">Verses</Link>
           <Link href="/search">Search</Link>
           <Link href="/about-us">About-Us</Link>
           <Link href="/contact-us">Contact-Us</Link>
