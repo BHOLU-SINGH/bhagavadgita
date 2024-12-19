@@ -5,14 +5,18 @@ import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 
 export default function Page() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [serverMsg, setServerMsg] = useState("");
   const [serverMsgClass, setServerMsgClass] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
@@ -22,7 +26,7 @@ export default function Page() {
     try {
       const response = await fetch("/api/sendmail", {
         method: "POST",
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -30,11 +34,10 @@ export default function Page() {
       if (!response.ok) {
         throw new Error(result.message || "Failed to send email!");
       }
-
       setServerMsg(result.message);
       setServerMsgClass("success");
     } catch (error) {
-      console.error("Something went wrong, please try again!", error);
+      // console.error("Something went wrong, please try again!", error);
       setServerMsg(error.message || "Something went wrong, please try again!");
       setServerMsgClass("error");
     } finally {
@@ -58,7 +61,8 @@ export default function Page() {
         <form onSubmit={handleSubmit}>
           <h2>Contact Us</h2>
           <small>
-            If you have any questions or concerns, please feel free to contact us. We are here to help.
+            If you have any questions or concerns, please feel free to contact
+            us. We are here to help.
           </small>
           <div className="msg">
             <p className={serverMsgClass}>{serverMsg}</p>

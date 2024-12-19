@@ -67,9 +67,11 @@ const Page = () => {
       <Navbar />
       <div className="account login-div bg-img">
         <form action="#" onSubmit={handleSubmit}>
-          <h2>Revisit Your Spiritual Home</h2>
+          {/* <h2>Revisit Your Spiritual Home</h2> */}
+          <h2>Welcome Back!</h2>
           {/* <p className="tagline">Welcome back! Continue your journey to spiritual enlightenment with us.</p> */}
           {/* <p className="msg error">Something went wrong, Please try again!</p> */}
+          <p className="tagline">You are what you believe; trust in yourself and find peace within.</p>
           <div className="form-control">
             <label>Email Address</label>
             <input

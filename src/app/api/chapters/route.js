@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const apiKey = process.env.API_KEY;
   const apiHost = process.env.API_HOST;
-
+  
   try {
     const url =
       `https://${apiHost}/v2/chapters/?skip=0&limit=18`;

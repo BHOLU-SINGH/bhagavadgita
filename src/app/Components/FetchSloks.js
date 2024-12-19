@@ -1,41 +1,41 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import useSWR from "swr";
 import { useRouter } from "next/navigation";
+
+const fetcher = async (url) => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.data;
+};
 
 export default function FetchSloks(props) {
   const [search, setSearch] = useState("");
-  const [sloks, setSloks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isReversed, setIsReversed] = useState(false); // New state to track sorting order
   const verses_count = props.verses_count;
   const chapter_no = props.chapter_no;
-
   const router = useRouter();
 
-  useEffect(() => {
-    const getAllVerses = async () => {
-      setIsLoading(true);
-      const response = await fetch(`/api/slok/${chapter_no}/`);
-      const data = await response.json();
-      // return data;
-      setSloks(data.data);
-      setIsLoading(false);
-    };
-    
-    getAllVerses();
-  }, [setIsLoading, chapter_no, setSloks]);
+  const { data: sloks, error } = useSWR(`/api/slok/${chapter_no}/`, fetcher);
 
-  if (isLoading)
+  if (error) {
+    toast.error(error || "Failed to load");
+    return null; // Return null to avoid rendering if there's an error
+  }
+
+  if (!sloks) {
     return (
       <div className="spinner">
-        <span class="loader"></span>
+        <span className="loader"></span>
       </div>
     );
-  if (error) return <div>Error: {error}</div>;
+  }
 
   const reverseData = () => {
-    setSloks([...sloks].reverse());
+    setIsReversed(!isReversed);
   };
 
   function searchData(event) {
@@ -70,23 +70,22 @@ export default function FetchSloks(props) {
         </div>
       </div>
       <div className="slokItemContainer">
-        {sloks &&
-          sloks.map((slok) => (
-            <Link
-              href={`/chapters/${chapter_no}/verse/${slok.verse_number}`}
-              key={slok.id}
-            >
-              <div className="slok-card">
-                <h4>Verse: {slok.verse_number}</h4>
-                <div>
-                  <p>{slok.text}</p>
-                  <p>{slok.translations[5].description}</p>
-                  {/* <p>{JSON.stringify(slok.result.data.siva.et)}</p> */}
-                  {/* <p>{JSON.stringify(slok.result.data.tej.ht)}</p> */}
-                </div>
+        {(isReversed ? [...sloks].reverse() : sloks).map((slok) => (
+          <Link
+            href={`/chapters/${chapter_no}/verse/${slok.verse_number}`}
+            key={slok.id}
+          >
+            <div className="slok-card">
+              <h4>Verse: {slok.verse_number}</h4>
+              <div>
+                <p>{slok.text}</p>
+                <p>{slok.translations[5].description}</p>
+                {/* <p>{JSON.stringify(slok.result.data.siva.et)}</p> */}
+                {/* <p>{JSON.stringify(slok.result.data.tej.ht)}</p> */}
               </div>
-            </Link>
-          ))}
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
