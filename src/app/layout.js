@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import AudioPlayer from "./Components/AudioPlayer";
+import ScrollToTop from "./Components/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -8,7 +10,7 @@ export const metadata = {
   description:
     "The Bhagavad Gita is a sacred Hindu scripture that is part of the epic Mahabharata. It is a dialogue between the warrior Arjuna and his charioteer Krishna, who is revealed to be an avatar of the divine. The Gita offers profound insights into the nature of life, duty, and spiritual enlightenment. Our website provides a comprehensive resource for readers to explore the 18 chapters and every verse of this timeless text.",
   keywords:
-    "Bhagavad Gita, Hinduism, Mahabharata, Arjuna, Krishna, spirituality, philosophy, Duty, karma, devotaion, enlightenment, spiritual wisdom",
+    "Bhagavad Gita, Hinduism, Mahabharata, Arjuna, Krishna, spirituality, philosophy, Duty, karma, devotaion, enlightenment, spiritual wisdom, bhagavadgita1, freeprojects1",
 };
 
 export default function RootLayout({ children }) {
@@ -23,7 +25,13 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/favicon.png" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <>
+          <AudioPlayer />
+          {children}
+          <ScrollToTop />
+        </>
+      </body>
     </html>
   );
 }

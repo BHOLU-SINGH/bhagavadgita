@@ -4,17 +4,17 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  let data = [];
-  let success = true;
-  try {
-    await mongoose.connect(connection);
-    data = await User.find();
-  } catch (error) {
-    data = { result: "Error" };
-    success = false;
-  }
-  // console.log(data);
-  return NextResponse.json({ result: data, success });
+  await mongoose.connect(connection);
+    // data = await User.find();
+    // console.log(data);
+  return NextResponse.json({ result: true, success: true, class: "success" });
+  // try {
+  //   await mongoose.connect(connection);
+  //   data = await User.find();
+  // } catch (error) {
+  //   data = { result: "Something went wrong, please try again!", success: false, class: "error" };
+  // }
+  // return NextResponse.json({ result: true, success: true, class: "success" });
 }
 
 export async function POST(request) {
@@ -32,14 +32,16 @@ export async function POST(request) {
     return NextResponse.json({
       result: "All fields are required!",
       success: false,
+      class: "error",
     });
   } else {
-    // await mongoose.connect(connection);
-    // let user = new User(payload);
-    // const result = await user.save();
+    await mongoose.connect(connection);
+    let user = new User(payload);
+    const result = await user.save();
     return NextResponse.json({
       result: "New Record Added Successfully",
       success: true,
+      class: "success",
     });
   }
 }

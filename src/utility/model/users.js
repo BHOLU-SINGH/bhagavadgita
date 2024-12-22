@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const productModel = new mongoose.Schema({
+const bhagavadGitaModel = new mongoose.Schema({
     name: String,   
     email: String,
     gender: String,
@@ -8,4 +8,4 @@ const productModel = new mongoose.Schema({
     password: String
 });
 
-export const User = mongoose.models.users || mongoose.model("users", productModel);
+export const User = mongoose.models.bhagavadgita || mongoose.model("bhagavadgita", bhagavadGitaModel);

@@ -8,6 +8,7 @@ import {
   FaMapMarkerAlt,
   FaRegEnvelope,
   FaPhoneAlt,
+  FaAngleRight,
 } from "react-icons/fa";
 import GetCurrYear from "./GetCurrYear";
 
@@ -68,7 +69,11 @@ export default function Footer() {
               </Link>
             </div>
             <div className="email">
-              <Link className="text" href="mailto:bsdhaked786@gmail.com" target="_blank">
+              <Link
+                className="text"
+                href="mailto:bsdhaked786@gmail.com"
+                target="_blank"
+              >
                 <FaPhoneAlt className="icon" />
                 bsdha...@gmail.com
               </Link>
@@ -91,23 +96,51 @@ export default function Footer() {
             </div>
           </form> */}
           <h2>Links</h2>
+<<<<<<< HEAD
+          <div className="links">
+            <FaAngleRight className="link-icon" />
+            <Link href="/"> Home</Link>
+          </div>
+          <div className="links">
+            <FaAngleRight className="link-icon" />
+            <Link href="/chapters/1/verse/1">Verses</Link>
+          </div>
+          <div className="links">
+            <FaAngleRight className="link-icon" />
+            <Link href="/search">Search</Link>
+          </div>
+          <div className="links">
+            <FaAngleRight className="link-icon" />
+            <Link href="/about-us">About-Us</Link>
+          </div>
+          <div className="links">
+            <FaAngleRight className="link-icon" />
+            <Link href="/contact-us">Contact-Us</Link>
+          </div>
+          {/* <Link href="/">
+            <FaAngleRight /> Home
+          </Link>
+=======
           <Link href="/">Home</Link>
+>>>>>>> d48c28a36dbef272a77abda08cbd7dc0f06fdbed
           <Link href="/chapters/1/verse/1">Verses</Link>
           <Link href="/search">Search</Link>
           <Link href="/about-us">About-Us</Link>
-          <Link href="/contact-us">Contact-Us</Link>
+          <Link href="/contact-us">Contact-Us</Link> */}
         </div>
       </div>
       <div className="bottom">
-        <span className="credit">
-          Created By-
-          <Link href="https://freeprojects1.blogspot.com" target="_blank">
-            FreeProjects1
-          </Link>
-          |
-        </span>
         <FaRegCopyright className="icon" />
-        <span> {currentYear} All rights reserved.</span>
+        <span>
+          {currentYear} All rights reserved | Designed With ❤️ By{" "}
+          <Link
+            style={{ color: "#fff" }}
+            href="https://github.com/bholu-singh"
+            target="_blank"
+          >
+            Bholu Singh
+          </Link>
+        </span>
       </div>
     </footer>
   );

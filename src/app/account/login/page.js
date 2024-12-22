@@ -1,6 +1,6 @@
 "use client";
 
-import { act, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import Navbar from "@/app/Components/Navbar";
@@ -11,8 +11,11 @@ const Page = () => {
     email: "",
     password: "",
   });
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState("password");
+  const [serverMsg, setServerMsg] = useState("");
+  const [serverStatus, setServerMsgClass] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,30 +24,29 @@ const Page = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
     // setIsLoading(true);
 
     // try {
-    //   const response = await fetch("/api/sendmail", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(formData),
-    //   });
-
-    //   const result = await response.json();
+    //   const response = await fetch("/api/account/user");
     //   if (!response.ok) {
-    //     throw new Error(result.message || "Failed to send email!");
+    //     throw new Error("Network response was not ok!");
     //   }
 
-    //   setServerMsg(result.message);
-    //   setServerMsgClass("success");
+    //   const data = await response.json();
+    //   setData(data.result);
+    //   // setServerResponse({ msg: data.result, status: data.class });
+    //   setServerMsg(data.result);
+    //   setServerMsgClass(data.class);
     // } catch (error) {
     //   console.error("Something went wrong, please try again!", error);
-    //   setServerMsg(error.message || "Something went wrong, please try again!");
-    //   setServerMsgClass("error");
+    //   // setServerResponse({ msg: "Something went wrong, please try again!", status: "error" });
+    //   setServerMsg(data.result || "Something went wrong, please try again!");
+    //   setServerMsgClass(data.class);
     // } finally {
     //   setIsLoading(false);
-    //   setFormData({ name: "", email: "", message: "" });
+    //   setFormData({ email: "", password: "", });
+
+    //   console.log(data);
     // }
   };
 
@@ -71,7 +73,10 @@ const Page = () => {
           <h2>Welcome Back!</h2>
           {/* <p className="tagline">Welcome back! Continue your journey to spiritual enlightenment with us.</p> */}
           {/* <p className="msg error">Something went wrong, Please try again!</p> */}
-          <p className="tagline">You are what you believe; trust in yourself and find peace within.</p>
+          <p className="tagline">
+            You are what you believe; trust in yourself and find peace within.
+          </p>
+          <p className={`msg ${serverStatus}`}>{serverMsg}</p>
           <div className="form-control">
             <label>Email Address</label>
             <input
@@ -93,11 +98,11 @@ const Page = () => {
                 required
               />
               <p onClick={() => changeVisibility()}>
-                {formData.password.length >= 1 ? (
+                {formData.password && formData.password.length >= 1 ? (
                   passwordVisibility === "password" ? (
-                    <IoEyeOutline className="icon" />
-                  ) : (
                     <IoEyeOffOutline className="icon" />
+                  ) : (
+                    <IoEyeOutline className="icon" />
                   )
                 ) : null}
               </p>

@@ -45,9 +45,6 @@ export default function Page(props) {
     );
   }
 
-  console.log(data)
-  console.log(chapterData)
-
   const handlePreviousClick = (cur_verse_value, max_verse_value) => {
     let numericCurVerseValue = Number(cur_verse_value);
     if (cur_verse_value > 1 && cur_verse_value <= max_verse_value) {
@@ -83,7 +80,14 @@ export default function Page(props) {
           <h2>
             BG {chapter_no}.{verse_no}
           </h2>
-          <p className="slok">{data.text}</p>
+          <p className="slok">
+            {chapterData.text.split("\n\n").map((text, index) => (
+              <span key={index}>
+                {text}
+                <br /> {/* Add a line break after each split text */}
+              </span>
+            ))}
+          </p>
           <p>{chapterData.transliteration}</p>
           <p>{chapterData.word_meanings}</p>
         </div>
@@ -118,9 +122,7 @@ export default function Page(props) {
         <div className="btn_div">
           <button
             className="btn btn-circle"
-            onClick={() =>
-              handlePreviousClick(verse_no, data.verses_count)
-            }
+            onClick={() => handlePreviousClick(verse_no, data.verses_count)}
           >
             <HiOutlineChevronDoubleLeft className="btn-icon" />
           </button>

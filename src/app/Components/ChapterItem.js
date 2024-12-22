@@ -25,7 +25,7 @@ export default function ChapterItem(props) {
 
   return (
     <div className="chapter">
-      <p className="chapter-number">
+      <p className="chapter-number" style={{textAlign: 'center'}}>
         <span>Chapter {data.chapter_number}</span>
       </p>
       <p className="chapter-title">
