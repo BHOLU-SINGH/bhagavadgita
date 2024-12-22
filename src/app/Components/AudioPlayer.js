@@ -1,22 +1,32 @@
+// src/app/Components/AudioPlayer.js
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
 const AudioPlayer = () => {
-  const audioFiles = [
+  const audioFiles = useMemo(() => [ // Wrapped audioFiles in useMemo
     "/audio/Mahabharatainstrumentalmusic.mp3",
     "/audio/KrishnaBackgroundMusic1.mp3",
-  ];
+  ], []);
 
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-  const [audio] = useState(new Audio(audioFiles[0]));
+  const [audio, setAudio] = useState(null); // Initialize audio as null
   const [isPlaying, setIsPlaying] = useState(true); // Start with playing
 
   useEffect(() => {
+    if (typeof window !== 'undefined') { // Check if running in the browser
+      const newAudio = new Audio(audioFiles[0]);
+      setAudio(newAudio);
+    }
+  }, [audioFiles]);
+
+  useEffect(() => {
+    if (!audio) return; // Ensure audio is defined
+
     audio.src = audioFiles[currentTrackIndex];
     audio.loop = false;
-    audio.volume = isPlaying ? 0.6 : 0; // Set volume based on play state
+    audio.volume = isPlaying ? 0.6 : 0;
 
     const handleEnded = () => {
       setCurrentTrackIndex((prevIndex) => (prevIndex + 1) % audioFiles.length);
@@ -38,7 +48,7 @@ const AudioPlayer = () => {
       audio.pause();
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [currentTrackIndex, audio, isPlaying]); // Added isPlaying to dependencies
+  }, [currentTrackIndex, audio, audioFiles, isPlaying]); // Added isPlaying to dependencies
 
   const togglePlayback = () => {
     setIsPlaying((prev) => !prev); // Toggle playback state

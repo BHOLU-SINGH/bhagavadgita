@@ -18,12 +18,6 @@ export default function Footer() {
     <footer>
       <div className="main-content">
         <div className="left box">
-          {/* <h2>About Us</h2> */}
-          {/* <p>
-            FreeProjects1 is a free blog where you can get web designing, web
-            development, ui/ux designing, html css projects, hover animation and
-            effects, javascript and jquery projects and related so on.
-          </p> */}
           <h2 translate="no">Bhagavad Gita</h2>
           <p>
             Explore the profound wisdom of the Bhagavad Gita, a pivotal Hindu
@@ -96,7 +90,6 @@ export default function Footer() {
             </div>
           </form> */}
           <h2>Links</h2>
-<<<<<<< HEAD
           <div className="links">
             <FaAngleRight className="link-icon" />
             <Link href="/"> Home</Link>
@@ -117,16 +110,6 @@ export default function Footer() {
             <FaAngleRight className="link-icon" />
             <Link href="/contact-us">Contact-Us</Link>
           </div>
-          {/* <Link href="/">
-            <FaAngleRight /> Home
-          </Link>
-=======
-          <Link href="/">Home</Link>
->>>>>>> d48c28a36dbef272a77abda08cbd7dc0f06fdbed
-          <Link href="/chapters/1/verse/1">Verses</Link>
-          <Link href="/search">Search</Link>
-          <Link href="/about-us">About-Us</Link>
-          <Link href="/contact-us">Contact-Us</Link> */}
         </div>
       </div>
       <div className="bottom">

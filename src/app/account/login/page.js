@@ -24,30 +24,30 @@ const Page = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // setIsLoading(true);
+    setIsLoading(true);
 
-    // try {
-    //   const response = await fetch("/api/account/user");
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not ok!");
-    //   }
+    try {
+      const response = await fetch("/api/account/user");
+      if (!response.ok) {
+        throw new Error("Network response was not ok!");
+      }
 
-    //   const data = await response.json();
-    //   setData(data.result);
-    //   // setServerResponse({ msg: data.result, status: data.class });
-    //   setServerMsg(data.result);
-    //   setServerMsgClass(data.class);
-    // } catch (error) {
-    //   console.error("Something went wrong, please try again!", error);
-    //   // setServerResponse({ msg: "Something went wrong, please try again!", status: "error" });
-    //   setServerMsg(data.result || "Something went wrong, please try again!");
-    //   setServerMsgClass(data.class);
-    // } finally {
-    //   setIsLoading(false);
-    //   setFormData({ email: "", password: "", });
+      const data = await response.json();
+      setData(data.result);
+      // setServerResponse({ msg: data.result, status: data.class });
+      setServerMsg(data.result);
+      setServerMsgClass(data.class);
+    } catch (error) {
+      console.error("Something went wrong, please try again!", error);
+      // setServerResponse({ msg: "Something went wrong, please try again!", status: "error" });
+      setServerMsg(data.result || "Something went wrong, please try again!");
+      setServerMsgClass(data.class);
+    } finally {
+      setIsLoading(false);
+      setFormData({ email: "", password: "", });
 
-    //   console.log(data);
-    // }
+      console.log(data);
+    }
   };
 
   if (isLoading) {
